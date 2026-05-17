@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enmaa.ai — Multi-Model AI Platform for Education & Research</title>
+  <meta name="description" content="Compare, chat, and research with 20+ free open-source AI models. Educational AI platform powered by Ollama & HuggingFace.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" data-page="home">
+      <span class="logo-icon">✦</span>
+      <span class="logo-text">Enmaa<span class="logo-accent">.ai</span></span>
+      <span class="logo-beta">v2</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="nav-link active" data-page="home">Home</a>
+      <a href="#" class="nav-link" data-page="chat">Chat</a>
+      <a href="#" class="nav-link" data-page="arena">Arena</a>
+      <a href="#" class="nav-link" data-page="search">Research</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="icon-moon">🌙</span>
+        <span class="icon-sun">☀️</span>
+      </button>
+      <button class="settings-btn" id="settingsBtn" aria-label="Settings">⚙️</button>
+    </div>
+    <button class="mobile-menu-btn" id="mobileBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- SETTINGS OVERLAY -->
+<div class="settings-overlay close-settings" id="settingsOverlay"></div>
+
+<!-- SETTINGS PANEL -->
+<div class="settings-panel" id="settingsPanel">
+  <div class="settings-header">
+    <h3>⚙️ Settings</h3>
+    <button class="close-settings" aria-label="Close">✕</button>
+  </div>
+  <div class="settings-body">
+    <div class="sg">
+      <label class="sl">Ollama Host</label>
+      <input type="text" class="si" value="http://127.0.0.1:11434" placeholder="http://127.0.0.1:11434">
+    </div>
+    <div class="sg">
+      <label class="sl">HuggingFace Token</label>
+      <input type="password" class="si" placeholder="hf_..." id="hfTokenInput">
+      <p class="sh">Get yours at <a href="https://huggingface.co/settings/tokens" target="_blank">huggingface.co/settings/tokens</a></p>
+    </div>
+    <div class="sg">
+      <label class="sl">Theme</label>
+      <div class="theme-selector">
+        <button class="theme-opt active" data-t="dark">🌙 Dark</button>
+        <button class="theme-opt" data-t="light">☀️ Light</button>
+      </div>
+    </div>
+    <div class="sg">
+      <label class="sl">Default Model</label>
+      <select class="si" id="defaultModel">
+        <option value="llama3.2">🦙 Llama 3.2</option>
+        <option value="mistral">🌬️ Mistral</option>
+        <option value="gemma2:2b">💎 Gemma 2 (2B)</option>
+        <option value="phi3.5:3.8b">🔵 Phi-3.5</option>
+        <option value="qwen2.5:3b">🐉 Qwen 2.5</option>
+        <option value="deepseek-r1:7b">🧠 DeepSeek R1</option>
+      </select>
+    </div>
+    <div class="sg">
+      <label class="sl">Connection Status</label>
+      <div class="status-row">
+        <span class="status-dot offline" id="ollamaDot"></span> Ollama
+        <span class="status-dot offline" id="hfDot" style="margin-left:16px"></span> HuggingFace
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HOME ===== -->
+<main class="page active" id="p-home">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✦ 20+ Free Open-Source AI Models</div>
+      <h1 class="hero-title">
+        Explore <span class="gradient-text">Multiple AI Models</span><br>
+        For <span class="gradient-text-2">Education & Research</span>
+      </h1>
+      <p class="hero-subtitle">
+        Compare, chat, and research with leading open-source AI models — Llama, Mistral, Qwen, DeepSeek, Gemma, Phi, and more.<br>
+        All free, private, and accessible. Powered by Ollama & HuggingFace.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary" data-page="arena">⚔️ Arena Mode</a>
+        <a href="#" class="btn btn-secondary" data-page="search">🔍 Research Tool</a>
+        <a href="#" class="btn btn-ghost" data-page="chat">💬 Start Chatting</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-n">25+</span><span class="stat-l">Free Models</span></div>
+        <div class="stat"><span class="stat-n">3</span><span class="stat-l">Providers</span></div>
+        <div class="stat"><span class="stat-n">∞</span><span class="stat-l">Free Access</span></div>
+        <div class="stat"><span class="stat-n">8</span><span class="stat-l">Subjects</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="section-header">
+      <h2>Everything for <span class="gradient-text">AI-Powered Learning</span></h2>
+      <p>Three powerful modes designed for students, researchers, and lifelong learners.</p>
+    </div>
+    <div class="features-grid">
+      <div class="fc" data-page="arena">
+        <div class="fc-icon">⚔️</div>
+        <h3>Arena Mode</h3>
+        <p>Compare any two AI models side-by-side. See which one gives better answers for your questions.</p>
+        <div class="fc-tags"><span>Comparison</span><span>Evaluation</span></div>
+      </div>
+      <div class="fc" data-page="chat">
+        <div class="fc-icon">💬</div>
+        <h3>Multi-Model Chat</h3>
+        <p>Chat individually with any model. Switch between Llama, Mistral, Qwen, DeepSeek, Gemma, Phi, and more.</p>
+        <div class="fc-tags"><span>Conversation</span><span>Q&A</span></div>
+      </div>
+      <div class="fc" data-page="search">
+        <div class="fc-icon">🔍</div>
+        <h3>AI Research Search</h3>
+        <p>Get AI-synthesized research summaries across multiple subjects. Perfect for papers and projects.</p>
+        <div class="fc-tags"><span>Research</span><span>Summarization</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ms" id="models">
+    <div class="section-header">
+      <h2><span class="gradient-text">25+ Open-Source Models</span></h2>
+      <p>All free, open-source, and available via Ollama (local) or HuggingFace Inference API.</p>
+    </div>
+    <div class="models-grid" id="modelsGrid"></div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-content">
+      <h2>Ready to explore the future of AI?</h2>
+      <p>Start your journey with free, open-source AI — no credit card, no subscription.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn btn-primary" data-page="arena">⚔️ Arena Mode</a>
+        <a href="#" class="btn btn-secondary" data-page="search">🔍 Start Researching</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Enmaa<span class="logo-accent">.ai</span></span>
+        <p>Free & open-source AI platform for education and research.<br>Built with ❤️ for the open-source community.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col"><h4>Platform</h4><a href="#" data-page="arena">Arena</a><a href="#" data-page="chat">Chat</a><a href="#" data-page="search">Research</a></div>
+        <div class="footer-col"><h4>Models</h4><a href="https://ollama.ai" target="_blank">Ollama</a><a href="https://huggingface.co" target="_blank">HuggingFace</a><a href="https://llama.meta.com" target="_blank">Llama</a></div>
+        <div class="footer-col"><h4>Resources</h4><a href="https://github.com" target="_blank">GitHub</a><a href="https://en.wikipedia.org" target="_blank">Wikipedia</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Enmaa.ai — Open-source AI for education</p></div>
+  </footer>
+</main>
+
+<!-- ===== CHAT ===== -->
+<main class="page" id="p-chat">
+  <div class="chat-c">
+    <div class="chat-side">
+      <div class="side-h">
+        <h3>💬 Conversations</h3>
+        <button class="btn btn-sm" id="newChatBtn">+ New</button>
+      </div>
+      <div class="chat-history"><div class="hist-empty">Start a conversation below.</div></div>
+      <div class="side-f">
+        <select id="chatModel" class="model-sel">
+          <option value="llama3.2">🦙 Llama 3.2</option>
+          <option value="mistral">🌬️ Mistral</option>
+          <option value="qwen2.5:7b">🐉 Qwen 2.5 (7B)</option>
+          <option value="deepseek-r1:7b">🧠 DeepSeek R1</option>
+          <option value="gemma2:9b">💎 Gemma 2 (9B)</option>
+          <option value="phi3.5:3.8b">🔵 Phi-3.5</option>
+          <option value="llama3.1:8b">🦙 Llama 3.1 (8B)</option>
+          <option value="codellama">💻 Code Llama</option>
+          <option value="mixtral:8x7b">🌬️ Mixtral 8x7B</option>
+          <option value="falcon2:11b">🦅 Falcon 2 (11B)</option>
+        </select>
+      </div>
+    </div>
+    <div class="chat-main">
+      <div class="chat-msgs" id="chatMessages">
+        <div class="welcome">
+          <div class="welcome-icon">✦</div>
+          <h2>Enmaa Chat</h2>
+          <p>Powered by open-source AI models for education & research.</p>
+          <div class="welcome-suggestions">
+            <button class="suggestion-chip" data-p="Explain quantum computing">🧪 Quantum Computing</button>
+            <button class="suggestion-chip" data-p="How do neural networks work?">🧠 Neural Networks</button>
+            <button class="suggestion-chip" data-p="What is CRISPR gene editing?">🧬 CRISPR</button>
+            <button class="suggestion-chip" data-p="Explain relativity simply">🌌 Relativity</button>
+            <button class="suggestion-chip" data-p="What causes climate change?">🌍 Climate</button>
+            <button class="suggestion-chip" data-p="How does AI learn?">🤖 AI Learning</button>
+          </div>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <div class="input-wrap">
+          <textarea id="chatInput" rows="1" placeholder="Ask Enmaa anything..." maxlength="8000"></textarea>
+          <button id="sendBtn" class="send-btn" disabled aria-label="Send">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </div>
+        <p class="input-ft">Enmaa.ai uses free open-source models. Responses are generated locally or via free APIs.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===== ARENA ===== -->
+<main class="page" id="p-arena">
+  <div class="arena-c">
+    <div class="arena-h">
+      <h1>⚔️ Arena Mode</h1>
+      <p>Pit two AI models against each other. See which one answers better.</p>
+      <div class="arena-picks">
+        <div class="arena-pick">
+          <label>Model A</label>
+          <select id="arenaA"></select>
+        </div>
+        <div class="arena-vs">VS</div>
+        <div class="arena-pick">
+          <label>Model B</label>
+          <select id="arenaB"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="arena-input">
+      <textarea id="arenaInput" rows="2" placeholder="Enter a prompt for both models..." maxlength="8000"></textarea>
+      <button id="arenaBtn" class="btn btn-primary btn-lg">⚔️ Battle!</button>
+    </div>
+
+    <div class="arena-load" id="arenaLoad" style="display:none">
+      <div class="arena-load-inner">
+        <div class="arena-spinner"></div>
+        <p>Both models are thinking...</p>
+        <div class="arena-progress">
+          <div class="ap-item"><span class="ap-label" id="progA">Model A: Waiting...</span><div class="ap-bar"><div class="ap-fill" id="fillA"></div></div></div>
+          <div class="ap-item"><span class="ap-label" id="progB">Model B: Waiting...</span><div class="ap-bar"><div class="ap-fill" id="fillB"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arena-results" id="arenaResults" style="display:none">
+      <div class="arena-card" id="arenaCardA">
+        <div class="ac-h">
+          <div class="ac-info"><span class="ac-avatar" id="resAvatarA">A</span><div><span class="ac-name" id="resNameA">Model A</span></div></div>
+          <button class="btn-icon vote-btn" data-vote="A" title="Model A wins">👑</button>
+        </div>
+        <div class="ac-body" id="resBodyA"><p class="res-ph">Waiting for response...</p></div>
+      </div>
+      <div class="arena-card" id="arenaCardB">
+        <div class="ac-h">
+          <div class="ac-info"><span class="ac-avatar" id="resAvatarB">B</span><div><span class="ac-name" id="resNameB">Model B</span></div></div>
+          <button class="btn-icon vote-btn" data-vote="B" title="Model B wins">👑</button>
+        </div>
+        <div class="ac-body" id="resBodyB"><p class="res-ph">Waiting for response...</p></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===== SEARCH ===== -->
+<main class="page" id="p-search">
+  <div class="search-c">
+    <div class="search-hero">
+      <h1>🔍 AI Research Assistant</h1>
+      <p>Research any topic with AI-synthesized summaries from multiple sources.<br>Built for students, educators, and lifelong learners.</p>
+      <div class="search-box-wrap">
+        <div class="search-box">
+          <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="searchInput" placeholder="Search any topic for research..." autocomplete="off">
+          <button id="searchBtn" class="btn btn-primary">Research</button>
+        </div>
+        <div class="search-suggest" id="searchSuggest"></div>
+      </div>
+      <div class="search-trending">
+        <span>Trending Topics:</span>
+        <button class="trend-chip" data-q="Quantum Computing">⚛️ Quantum</button>
+        <button class="trend-chip" data-q="Artificial Intelligence">🤖 AI</button>
+        <button class="trend-chip" data-q="CRISPR Gene Editing">🧬 CRISPR</button>
+        <button class="trend-chip" data-q="Climate Change Solutions">🌱 Climate</button>
+        <button class="trend-chip" data-q="Neural Networks">🧠 Neural Nets</button>
+        <button class="trend-chip" data-q="DNA Genetics">🧬 DNA</button>
+      </div>
+    </div>
+
+    <div class="search-results" id="searchResults" style="display:none">
+      <div class="sr-h">
+        <h2>Research Results</h2>
+        <div class="sr-model">
+          <label>Synthesis:</label>
+          <select id="searchModel">
+            <option value="llama3.2">🦙 Llama 3.2</option>
+            <option value="mistral">🌬️ Mistral</option>
+            <option value="qwen2.5:7b">🐉 Qwen 2.5 (7B)</option>
+            <option value="phi3.5:3.8b">🔵 Phi-3.5</option>
+            <option value="deepseek-r1:7b">🧠 DeepSeek R1</option>
+          </select>
+        </div>
+      </div>
+      <div class="research-syn" id="researchSyn"></div>
+      <div class="search-sources"><h3>📚 Sources</h3><div class="sources-list" id="sourcesList"></div></div>
+    </div>
+  </div>
+</main>
+
+</div>
+
+<script src="js/app.js?v=2"></script>
+</body>
+</html>
